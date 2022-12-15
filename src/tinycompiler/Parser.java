@@ -95,12 +95,13 @@ public class Parser {
         Token ftoken = currToken;
         Factor factor = factor();
         termsChain.add(new Term(ftoken, factor));
+        termsIndex++;
         while(currToken.getTokenType().equals("MULT") | currToken.getTokenType().equals("DIV")){
-            termsIndex++;
             MulOp mulOp = new MulOp(currToken, currToken.getTokenVal());
             consume();
             Factor sFactor = factor();
             termsChain.add(new Term(currToken, termsChain.get(termsIndex-1), mulOp, sFactor));
+            termsIndex++;
         }
         return termsChain.get(termsChain.size()-1);
         

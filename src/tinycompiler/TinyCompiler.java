@@ -19,7 +19,7 @@ public class TinyCompiler {
         // TODO code application logic here
         
         //String data = File.readFile("data.txt");
-        Scanner scanner = new Scanner(" 5 + 2 * 3 / 2 * 4 + 4");
+        Scanner scanner = new Scanner(" 5 + 2 * 3 + 1 / 14 + 4 + 1");
         System.out.println(scanner.getTokens());
         Parser parser = new Parser(scanner);
         SimpleExpression exp = parser.simpleExpression();
