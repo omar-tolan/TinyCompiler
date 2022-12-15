@@ -4,7 +4,7 @@
  */
 package tinycompiler;
 
-import tinycompiler.utils.Expressions.SimpleExpression;
+import tinycompiler.utils.Expressions.Expression;
 
 /**
  *
@@ -19,10 +19,10 @@ public class TinyCompiler {
         // TODO code application logic here
         
         //String data = File.readFile("data.txt");
-        Scanner scanner = new Scanner(" 5 + 2 * 3 + 1 / 14 + 4 + 1");
+        Scanner scanner = new Scanner("c + 3  * 3 < 2 + x / 5");
         System.out.println(scanner.getTokens());
         Parser parser = new Parser(scanner);
-        SimpleExpression exp = parser.simpleExpression();
+        Expression exp = parser.expression();
         System.out.println("done");
     }
     

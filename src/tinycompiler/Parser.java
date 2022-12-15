@@ -71,6 +71,7 @@ public class Parser {
         Expression currExp = new Expression(ftoken, simpleExp1);
         while(currToken.getTokenType().equals("EQUAL")|currToken.getTokenType().equals("LESSTHAN")|currToken.getTokenType().equals("GREATERTHAN")){
             ComparisonOp comparisonOp = new ComparisonOp(currToken ,currToken.getTokenVal());
+            consume();
             SimpleExpression simpleExp2 = simpleExpression();
             return new Expression(ftoken, simpleExp1, comparisonOp, simpleExp2);
         }
@@ -81,12 +82,13 @@ public class Parser {
         Token ftoken = currToken;
         Term term = term();
         simpleExpsChain.add(new SimpleExpression(ftoken, term));
+        simpleExpsIndex++;
         while(currToken.getTokenType().equals("PLUS") | currToken.getTokenType().equals("MINUS")){
-            simpleExpsIndex++;
             AddOp addOp = new AddOp(currToken, currToken.getTokenVal());
             consume();
             Term sTerm = term();
             simpleExpsChain.add(new SimpleExpression(currToken, simpleExpsChain.get(simpleExpsIndex-1), addOp, sTerm));
+            simpleExpsIndex++;
         }
         return simpleExpsChain.get(simpleExpsChain.size()-1);        
     }
