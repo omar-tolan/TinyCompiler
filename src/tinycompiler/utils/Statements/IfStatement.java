@@ -13,20 +13,20 @@ import tinycompiler.utils.Expressions.Expression;
  */
 public class IfStatement extends Statement{
     
-    public Statement statement;
-    public Statement elseStatement;
+    public StatementSequence thenStatements;
+    public StatementSequence elseStatements;
     public Expression expression;
     
-    public IfStatement(Token firstToken, Expression expression, Statement statement) {
+    public IfStatement(Token firstToken, Expression expression, StatementSequence thenStatements) {
         super(firstToken);
         this.expression = expression;
-        this.statement = statement;
+        this.thenStatements = thenStatements;
     }
     
-    public IfStatement(Token firstToken, Expression expression, Statement statement, Statement elseStatement) {
+    public IfStatement(Token firstToken, Expression expression, StatementSequence thenStatements, StatementSequence elseStatements) {
         super(firstToken);
         this.expression = expression;
-        this.statement = statement;
-        this.elseStatement = elseStatement;
+        this.thenStatements = thenStatements;
+        this.elseStatements = elseStatements;
     }
 }

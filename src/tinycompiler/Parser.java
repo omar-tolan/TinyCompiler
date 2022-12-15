@@ -37,12 +37,15 @@ public class Parser {
     
     void match(String t) throws SyntaxException{
         if(!t.equals(currToken.getTokenType())){
-            throw new SyntaxException();
+  //          throw new SyntaxException();
         }
     }
     
     void consume(){
         currToken = this.scanner.nextToken();
+        if(currToken.getTokenType().equals("SEMICOLON")){
+            currToken = this.scanner.nextToken(); 
+        }
     }
     
     Parser(Scanner scanner){
@@ -129,7 +132,8 @@ public class Parser {
     StatementSequence statementSequence() throws SyntaxException{
         Token ftoken = currToken;
         ArrayList<Statement> stmts = new ArrayList<Statement>();
-        while(currToken.getTokenType().equals("IF") | currToken.getTokenType().equals("READ") | currToken.getTokenType().equals("WRITE") | currToken.getTokenType().equals("ASSIGN") | currToken.getTokenType().equals("REPEAT")){
+        int stmtsIndex = 0;
+        while(currToken.getTokenType().equals("IF") | currToken.getTokenType().equals("READ") | currToken.getTokenType().equals("WRITE") | currToken.getTokenType().equals("IDENTIFIER") | currToken.getTokenType().equals("REPEAT")){
             stmts.add(statement());
         }
         return new StatementSequence(ftoken, stmts);
@@ -144,7 +148,7 @@ public class Parser {
             statement = writeStatement();
         }else if(currToken.getTokenType().equals("READ")){
             statement = readStatement();
-        }else if(currToken.getTokenType().equals("ASSIGN")){
+        }else if(currToken.getTokenType().equals("IDENTIFIER")){
             statement = assignStatement();
         }else if(currToken.getTokenType().equals("REPEAT")){
             statement = repeatStatement();
@@ -155,25 +159,29 @@ public class Parser {
     IfStatement ifStatement() throws SyntaxException{
         Token ftoken = currToken;
         Expression expression = null;
-        Statement statement = null;
-        Statement elseStatement = null;
+        StatementSequence thenStatements = null;
+        StatementSequence elseStatements = null;
         IfStatement ifstmt = null;
         match("IF");
         consume();
         expression = expression();
-        statement = statement();
-        if(currToken.getTokenType().equals("else")){
+        match("then");
+        consume();
+        thenStatements = statementSequence();
+        if(currToken.getTokenType().equals("ELSE")){
             match("ELSE");
-            elseStatement = statement();
-            return new IfStatement(ftoken, expression, statement, elseStatement);
+            consume();
+            elseStatements = statementSequence();
+            return new IfStatement(ftoken, expression, thenStatements, elseStatements);
         }
-        return new IfStatement(ftoken, expression, statement);
+        return new IfStatement(ftoken, expression, thenStatements);
     }
     
     WriteStatement writeStatement() throws SyntaxException{
         Token ftoken = currToken;
         Expression expression = null;
         match("WRITE");
+        consume();
         expression = expression();
         return new WriteStatement(ftoken, expression);
     }
@@ -191,15 +199,12 @@ public class Parser {
     
     AssignStatement assignStatement() throws SyntaxException{
         Token ftoken = currToken;
-        Identifier identifier = null;
-        Expression expression = null;
-        
+        Identifier identifier = new Identifier(ftoken, currToken.getTokenVal());
         match("IDENTIFIER");
         consume();
         match("ASSIGN");
         consume();
-        expression = expression();
-        
+        Expression expression = expression();
         return new AssignStatement(ftoken, identifier, expression);
     }
     
@@ -207,14 +212,12 @@ public class Parser {
         Token ftoken = currToken;
         StatementSequence stmtseq = null;
         Expression expression = null;
-        
         match("REPEAT");
         consume();
         stmtseq = statementSequence();
         match("UNTIL");
         consume();
         expression = expression();
-        
         return new RepeatStatement(ftoken, stmtseq, expression);
     }
 }

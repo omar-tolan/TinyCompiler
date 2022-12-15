@@ -120,6 +120,9 @@ public class Scanner {
                         }else if("then".equals(tok)){
                             tokens.add(new Token("THEN", tok, pos));
                             state = State.START;
+                        }else if("else".equals(tok)){
+                            tokens.add(new Token("ELSE", tok, pos));
+                            state = State.START;
                         }else if("repeat".equals(tok)){
                             tokens.add(new Token("REPEAT", tok, pos));
                             state = State.START;
@@ -165,6 +168,8 @@ public class Scanner {
                         tokens.add(new Token("IF", tok, pos));
                     }else if("then".equals(tok)){
                         tokens.add(new Token("THEN", tok, pos));
+                    }else if("else".equals(tok)){
+                        tokens.add(new Token("ELSE", tok, pos));
                     }else if("repeat".equals(tok)){
                         tokens.add(new Token("REPEAT", tok, pos));
                     }else if("until".equals(tok)){

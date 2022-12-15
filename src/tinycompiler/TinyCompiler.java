@@ -4,7 +4,7 @@
  */
 package tinycompiler;
 
-import tinycompiler.utils.Expressions.Expression;
+import tinycompiler.utils.Statements.Statement;
 
 /**
  *
@@ -18,12 +18,11 @@ public class TinyCompiler {
     public static void main(String[] args) throws SyntaxException{
         // TODO code application logic here
         
-        //String data = File.readFile("data.txt");
-        Scanner scanner = new Scanner("c + 3  * 3 < 2 + x / 5");
+        String data = File.readFile("tinyProgram.txt");
+        Scanner scanner = new Scanner(data);
         System.out.println(scanner.getTokens());
         Parser parser = new Parser(scanner);
-        Expression exp = parser.expression();
+        Statement s = parser.statement();
         System.out.println("done");
     }
-    
 }
