@@ -4,7 +4,7 @@
  */
 package tinycompiler;
 
-import tinycompiler.utils.Statements.Statement;
+import tinycompiler.utils.Program;
 
 /**
  *
@@ -15,14 +15,14 @@ public class TinyCompiler {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws SyntaxException{
+    public static void run() throws SyntaxException{
         // TODO code application logic here
         
         String data = File.readFile("tinyProgram.txt");
         Scanner scanner = new Scanner(data);
         System.out.println(scanner.getTokens());
         Parser parser = new Parser(scanner);
-        Statement s = parser.statement();
+        Program prog = parser.Parse();
         System.out.println("done");
     }
 }
