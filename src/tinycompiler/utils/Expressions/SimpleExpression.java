@@ -19,13 +19,13 @@ public class SimpleExpression extends Node{
     public AddOp addOp;
     public SimpleExpression childExpression;
 
-    public SimpleExpression(Token t, Term term) {
-        super(t);
+    public SimpleExpression(Token t, int counter,Term term) {
+        super(t,counter);
         this.term = term;
     }
     
-    public SimpleExpression(Token t,SimpleExpression simpleExp, AddOp addOp, Term term){
-        super(t);
+    public SimpleExpression(Token t,int counter,SimpleExpression simpleExp, AddOp addOp, Term term){
+        super(t,counter);
         this.term = term;
         this.addOp = addOp;
         this.childExpression = simpleExp;

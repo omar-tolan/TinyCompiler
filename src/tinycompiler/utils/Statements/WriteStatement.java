@@ -15,8 +15,8 @@ public class WriteStatement extends Statement {
     
     public Expression expression;
 
-    public WriteStatement(Token firstToken, Expression expression) {
-        super(firstToken);
+    public WriteStatement(Token firstToken,int counter, Expression expression) {
+        super(firstToken,counter);
         this.expression = expression;
     }
     

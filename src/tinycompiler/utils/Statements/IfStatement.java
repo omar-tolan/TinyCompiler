@@ -17,14 +17,14 @@ public class IfStatement extends Statement{
     public StatementSequence elseStatements;
     public Expression expression;
     
-    public IfStatement(Token firstToken, Expression expression, StatementSequence thenStatements) {
-        super(firstToken);
+    public IfStatement(Token firstToken, int counter,Expression expression, StatementSequence thenStatements) {
+        super(firstToken,counter);
         this.expression = expression;
         this.thenStatements = thenStatements;
     }
     
-    public IfStatement(Token firstToken, Expression expression, StatementSequence thenStatements, StatementSequence elseStatements) {
-        super(firstToken);
+    public IfStatement(Token firstToken, int counter,Expression expression, StatementSequence thenStatements, StatementSequence elseStatements) {
+        super(firstToken,counter);
         this.expression = expression;
         this.thenStatements = thenStatements;
         this.elseStatements = elseStatements;

@@ -17,13 +17,13 @@ public class Expression extends Node{
     SimpleExpression simpleExp2;
     ComparisonOp comparisonOp;
     
-    public Expression(Token t, SimpleExpression simpleExp) {
-        super(t);
+    public Expression(Token t, int counter,SimpleExpression simpleExp) {
+        super(t,counter);
         this.simpleExp1 = simpleExp;
     }
 
-    public Expression(Token t, SimpleExpression simpleExp1, ComparisonOp comparisonOp, SimpleExpression simpleExp2) {
-        super(t);
+    public Expression(Token t,int counter, SimpleExpression simpleExp1, ComparisonOp comparisonOp, SimpleExpression simpleExp2) {
+        super(t,counter);
         this.simpleExp1 = simpleExp1;
         this.simpleExp2 = simpleExp2;
         this.comparisonOp = comparisonOp;

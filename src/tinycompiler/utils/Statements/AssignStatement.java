@@ -17,8 +17,8 @@ public class AssignStatement extends Statement{
     public Identifier identifier;
     public Expression expression;
     
-    public AssignStatement(Token firstToken, Identifier identifier, Expression expression) {
-        super(firstToken);
+    public AssignStatement(Token firstToken, int counter,Identifier identifier, Expression expression) {
+        super(firstToken,counter);
         this.identifier = identifier;
         this.expression = expression;
     }

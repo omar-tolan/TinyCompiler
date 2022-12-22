@@ -16,8 +16,8 @@ public class StatementSequence extends Node{
 
     public ArrayList<Statement> statements;
     
-    public StatementSequence(Token t, ArrayList<Statement> statements) {
-        super(t);
+    public StatementSequence(Token t, int counter,ArrayList<Statement> statements) {
+        super(t,counter);
         this.statements = statements;
     }
     

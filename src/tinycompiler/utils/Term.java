@@ -17,13 +17,13 @@ public class Term extends Node{
     public MulOp mulOp;
     public Term childTerm;
     
-    public Term(Token ftoken, Factor factor){
-        super(ftoken);
+    public Term(Token ftoken, int counter,Factor factor){
+        super(ftoken,counter);
         this.factor = factor;
     }
     
-    public Term(Token ftoken, Term childTerm, MulOp mulOp, Factor factor){
-        super(ftoken);
+    public Term(Token ftoken, int counter,Term childTerm, MulOp mulOp, Factor factor){
+        super(ftoken,counter);
         this.factor = factor;
         this.mulOp = mulOp;
         this.childTerm = childTerm;

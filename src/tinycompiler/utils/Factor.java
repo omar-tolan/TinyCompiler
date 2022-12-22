@@ -18,18 +18,18 @@ public class Factor extends Node{
     public int number;
     public String identifier;
     
-    public Factor(Token ftoken, int number){
-        super(ftoken);
+    public Factor(Token ftoken, int counter, int number){
+        super(ftoken, counter);
         this.number = number;
     }
     
-    public Factor(Token ftoken, String identifier){
-        super(ftoken);
+    public Factor(Token ftoken, int counter, String identifier){
+        super(ftoken, counter);
         this.identifier = identifier;
     }
     
-    public Factor(Token ftoken, Expression expression){
-        super(ftoken);
+    public Factor(Token ftoken, int counter, Expression expression){
+        super(ftoken, counter);
         this.leftBracket = "{";
         this.rightBracket = "}";
         this.expression = expression;

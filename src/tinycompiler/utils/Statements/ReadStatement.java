@@ -15,8 +15,8 @@ public class ReadStatement extends Statement{
     
     public Identifier identifier;
     
-    public ReadStatement(Token firstToken, Identifier identifier) {
-        super(firstToken);
+    public ReadStatement(Token firstToken, int counter,Identifier identifier) {
+        super(firstToken,counter);
         this.identifier = identifier;
     }
     

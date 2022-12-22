@@ -15,8 +15,8 @@ public class MulOp extends Node{
     
     public String operation;
     
-    public MulOp(Token ftoken, String operation){
-        super(ftoken);
+    public MulOp(Token ftoken,int counter, String operation){
+        super(ftoken,counter);
         this.operation = operation;
     }
 }

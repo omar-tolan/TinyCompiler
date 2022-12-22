@@ -17,8 +17,8 @@ public class Program extends Node{
     
     private StatementSequence stmtSeq;
     
-    public Program(Token firstToken, StatementSequence stmts){
-           super(firstToken);
+    public Program(Token firstToken, int counter,StatementSequence stmts){
+           super(firstToken,counter);
            this.stmtSeq = stmts;
        }
 }

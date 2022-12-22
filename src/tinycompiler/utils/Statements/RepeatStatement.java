@@ -15,8 +15,8 @@ public class RepeatStatement extends Statement{
     public StatementSequence stmtseq;
     public Expression expression;
 
-    public RepeatStatement(Token firstToken, StatementSequence stmtseq, Expression expression) {
-        super(firstToken);
+    public RepeatStatement(Token firstToken, int counter,StatementSequence stmtseq, Expression expression) {
+        super(firstToken,counter);
         this.stmtseq = stmtseq;
         this.expression = expression;
     }

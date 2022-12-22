@@ -15,8 +15,8 @@ public class AddOp extends Node{
     
     public String operation;
     
-    public AddOp(Token ftoken, String operation){
-        super(ftoken);
+    public AddOp(Token ftoken, int counter,String operation){
+        super(ftoken,counter);
         this.operation = operation;
     }
     

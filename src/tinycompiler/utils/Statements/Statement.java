@@ -12,7 +12,7 @@ import tinycompiler.utils.Node;
  * @author tolan
  */
 public class Statement extends Node{
-    public Statement(Token firstToken){
-        super(firstToken);
+    public Statement(Token firstToken,int counter){
+        super(firstToken,counter);
     }
 }

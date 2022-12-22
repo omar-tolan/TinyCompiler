@@ -15,8 +15,8 @@ public class ComparisonOp extends Node{
     
     public String operation;
 
-    public ComparisonOp(Token t, String operation) {
-        super(t);
+    public ComparisonOp(Token t, int counter,String operation) {
+        super(t,counter);
         this.operation = operation;
     }
 }

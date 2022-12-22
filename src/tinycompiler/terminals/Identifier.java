@@ -15,8 +15,8 @@ public class Identifier extends Node{
     
     public String identName;
 
-    public Identifier(Token t , String identName) {
-        super(t);
+    public Identifier(Token t , int counter,String identName) {
+        super(t,counter);
         this.identName = identName;
     }
     
