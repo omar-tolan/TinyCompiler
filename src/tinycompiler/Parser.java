@@ -37,7 +37,7 @@ public class Parser {
     
     void match(String t) throws SyntaxException{
         if(!t.equals(currToken.getTokenType())){
-  //          throw new SyntaxException();
+            throw new SyntaxException("Expected " + t);
         }
     }
     
@@ -48,14 +48,14 @@ public class Parser {
         }
     }
     
-    Parser(Scanner scanner){
+    public Parser(Scanner scanner){
         this.scanner = scanner;
         this.currToken = scanner.nextToken();
         this.simpleExpsChain = new ArrayList<SimpleExpression>();
         this.termsChain = new ArrayList<Term>();
     }
     
-    Program Parse() throws SyntaxException{
+    public Program parse() throws SyntaxException{
         Program program = program();
         return program;
     }
@@ -117,6 +117,7 @@ public class Parser {
         if(currToken.getTokenType().equals("OPENBRACKET")){
             consume();
             Expression expression = expression();
+            match("CLOSEDBRACKET");
             consume();
             return new Factor(ftoken, expression);
         }else if(currToken.getTokenType().equals("NUMBER")){

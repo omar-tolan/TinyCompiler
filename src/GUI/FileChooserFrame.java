@@ -7,7 +7,10 @@ package GUI;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import tinycompiler.File;
+import tinycompiler.Parser;
 import tinycompiler.Scanner;
+import tinycompiler.SyntaxException;
+import tinycompiler.TinyCompiler;
 
 /**
  *
@@ -20,6 +23,8 @@ public class FileChooserFrame extends javax.swing.JFrame {
      */
     String path;
     String program;
+    Scanner scanner;
+    Parser parser;
     
     public FileChooserFrame() {
         initComponents();
@@ -66,6 +71,11 @@ public class FileChooserFrame extends javax.swing.JFrame {
         jButton2.setBackground(new java.awt.Color(0, 0, 255));
         jButton2.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
         jButton2.setText("Parse");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
 
         fileChooserBtn.setBackground(new java.awt.Color(255, 0, 0));
         fileChooserBtn.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
@@ -166,6 +176,13 @@ public class FileChooserFrame extends javax.swing.JFrame {
     private void scanBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scanBtnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_scanBtnActionPerformed
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        // TODO add your handling code here:
+        try{TinyCompiler.run();}catch(SyntaxException e){}
+        
+
+    }//GEN-LAST:event_jButton2MouseClicked
 
     /**
      * @param args the command line arguments

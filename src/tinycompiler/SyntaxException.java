@@ -10,4 +10,8 @@ package tinycompiler;
  */
 public class SyntaxException extends Exception {
     
+    public SyntaxException(String m){
+        super(m);
+    }
+    
 }

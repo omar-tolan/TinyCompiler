@@ -22,7 +22,7 @@ public class TinyCompiler {
         Scanner scanner = new Scanner(data);
         System.out.println(scanner.getTokens());
         Parser parser = new Parser(scanner);
-        Program prog = parser.Parse();
+        Program prog = parser.parse();
         System.out.println("done");
     }
 }

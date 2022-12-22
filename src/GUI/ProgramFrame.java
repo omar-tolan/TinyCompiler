@@ -3,11 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package compiler;
+package GUI;
 
 import GUI.MainFrame;
 import javax.swing.JOptionPane;
+import tinycompiler.Parser;
 import tinycompiler.Scanner;
+import tinycompiler.SyntaxException;
+import tinycompiler.utils.Program;
 
 /**
  *
@@ -18,6 +21,10 @@ public class ProgramFrame extends javax.swing.JFrame {
     /**
      * Creates new form ProgramFrame
      */
+    
+    Scanner scanner;
+    Parser parser;
+    String program;
     public ProgramFrame() {
         initComponents();
     }
@@ -65,6 +72,11 @@ public class ProgramFrame extends javax.swing.JFrame {
         parseBtn.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         parseBtn.setForeground(new java.awt.Color(0, 255, 0));
         parseBtn.setText("Parse");
+        parseBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                parseBtnMouseClicked(evt);
+            }
+        });
         parseBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 parseBtnActionPerformed(evt);
@@ -124,10 +136,11 @@ public class ProgramFrame extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 453, Short.MAX_VALUE)
                     .addComponent(jScrollPane2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(scanBtn)
-                    .addComponent(parseBtn)
-                    .addComponent(backBtn))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(backBtn)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(scanBtn)
+                        .addComponent(parseBtn)))
                 .addGap(24, 24, 24))
         );
 
@@ -156,9 +169,9 @@ public class ProgramFrame extends javax.swing.JFrame {
         if(codeTxt.getText().isEmpty() == true){
             JOptionPane.showMessageDialog(this,"Please enter Tiny Language Program");
         }else{
-            String program = codeTxt.getText();
-        Scanner scanner = new Scanner(program);
-        tokensTxt.setText(scanner.getTokens());
+            program = codeTxt.getText();
+            scanner = new Scanner(program);
+            tokensTxt.setText(scanner.getTokens());
         }
     }//GEN-LAST:event_scanBtnMouseClicked
 
@@ -167,6 +180,21 @@ public class ProgramFrame extends javax.swing.JFrame {
         new MainFrame().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_backBtnMouseClicked
+
+    private void parseBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_parseBtnMouseClicked
+        // TODO add your handling code here:
+        if(scanner==null){
+            scanner = new Scanner(program);
+        }
+        parser = new Parser(scanner);
+        try{
+            Program prog = parser.parse();
+        }catch(SyntaxException e){
+            tokensTxt.setText(e.getMessage());
+        }
+        
+        codeTxt.setText("done parsing");
+    }//GEN-LAST:event_parseBtnMouseClicked
 
     /**
      * @param args the command line arguments
